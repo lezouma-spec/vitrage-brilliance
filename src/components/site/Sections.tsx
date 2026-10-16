@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { business, content as c, images, videos } from "@/config/site";
+import { business, carModels, content as c, images, videos } from "@/config/site";
 import { useLang } from "@/lib/i18n";
 import { submitQuote } from "@/lib/quotes.functions";
 import { Reveal, Counter, SectionHead } from "./Reveal";
@@ -20,7 +20,7 @@ export function EmergencyBanner() {
   return (
     <a href={tel} className="block border-b border-gold/20 bg-gold-soft py-2 text-center text-xs tracking-wide text-gold hover:brightness-125 sm:text-sm">
       <AlertTriangle className="me-2 inline h-4 w-4" aria-hidden="true" />
-      {t(c.emergency)} <span className="font-semibold">· {business.phoneDisplay}</span>
+      {t(c.emergency)} <span className="font-semibold" dir="ltr">· {business.phoneDisplay}</span>
     </a>
   );
 }
@@ -58,7 +58,7 @@ export function Header() {
             ))}
           </div>
           <Button asChild variant="gold" size="sm" className="hidden px-4 md:inline-flex">
-            <a href={tel}><Phone /> {business.phoneDisplay}</a>
+            <a href={tel}><Phone /> <span dir="ltr">{business.phoneDisplay}</span></a>
           </Button>
           <button className="p-2 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -142,7 +142,7 @@ export function Process() {
           {c.process.steps.map((s, i) => (
             <Reveal key={i} delay={i * 120}>
               <li className="text-center">
-                <span className="font-serif text-6xl text-gold-gradient">0{i + 1}</span>
+                <span dir="ltr" className="inline-block font-serif text-6xl text-gold-gradient">0{i + 1}</span>
                 <div className="gold-line mx-auto my-5 w-16" />
                 <h3 className="text-2xl">{t(s.title)}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{t(s.text)}</p>
@@ -169,6 +169,8 @@ export function QuoteForm() {
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [err, setErr] = useState("");
   const [fileName, setFileName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [brand, setBrand] = useState("");
   const f = c.quote.fields;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -209,11 +211,26 @@ export function QuoteForm() {
             <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2">
               <p className="text-sm text-muted-foreground sm:col-span-2">{t(c.quote.subtitle)}</p>
               <div className="space-y-2"><Label htmlFor="name">{t(f.name)} *</Label><Input id="name" name="name" required minLength={2} maxLength={100} autoComplete="name" className={field} /></div>
-              <div className="space-y-2"><Label htmlFor="phone">{t(f.phone)} *</Label><Input id="phone" name="phone" type="tel" required minLength={6} maxLength={30} autoComplete="tel" dir="ltr" className={field} /></div>
-              <div className="space-y-2"><Label htmlFor="brand">{t(f.brand)}</Label><Input id="brand" name="brand" maxLength={60} className={field} /></div>
+              <div className="space-y-2"><Label htmlFor="phone">{t(f.phone)} *</Label><Input id="phone" name="phone" type="tel" inputMode="numeric" pattern="[0-9]{8,12}" required minLength={8} maxLength={12} autoComplete="tel" dir="ltr" value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 12))} placeholder="20 123 456" className={`${field} text-start`} /></div>
+              <div className="space-y-2"><Label htmlFor="brand">{t(f.brand)}</Label>
+                <select id="brand" name="brand" value={brand} onChange={(e) => setBrand(e.target.value)} className={`${field} w-full border px-3 text-sm text-foreground`}>
+                  <option value="" className="bg-card">{t(c.quote.choose)}</option>
+                  {Object.keys(carModels).map((b) => <option key={b} value={b} className="bg-card">{b}</option>)}
+                  <option value="Autre" className="bg-card">{t(c.quote.other)}</option>
+                </select></div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2"><Label htmlFor="model">{t(f.model)}</Label><Input id="model" name="model" maxLength={60} className={field} /></div>
-                <div className="space-y-2"><Label htmlFor="year">{t(f.year)}</Label><Input id="year" name="year" inputMode="numeric" maxLength={4} className={field} /></div>
+                <div className="space-y-2"><Label htmlFor="model">{t(f.model)}</Label>
+                  {carModels[brand] ? (
+                    <select id="model" name="model" className={`${field} w-full border px-3 text-sm text-foreground`}>
+                      <option value="" className="bg-card">{t(c.quote.choose)}</option>
+                      {carModels[brand]!.map((m) => <option key={m} value={m} className="bg-card">{m}</option>)}
+                      <option value="Autre" className="bg-card">{t(c.quote.other)}</option>
+                    </select>
+                  ) : <Input id="model" name="model" maxLength={60} className={field} />}</div>
+                <div className="space-y-2"><Label htmlFor="year">{t(f.year)}</Label><select id="year" name="year" dir="ltr" className={`${field} w-full border px-3 text-sm text-foreground`}>
+                  <option value="" className="bg-card">—</option>
+                  {Array.from({ length: 30 }, (_, k) => String(new Date().getFullYear() - k)).map((y) => <option key={y} value={y} className="bg-card">{y}</option>)}
+                </select></div>
               </div>
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="glass">{t(f.glass)}</Label>
@@ -308,7 +325,7 @@ export function Work() {
               </figure>
             ))}
             <img src={images.trophy} alt={t(c.work.trophyAlt)} loading="lazy" width={768} height={1376}
-              className="mt-8 h-64 w-full rounded-3xl border border-border object-cover object-top" />
+              className="mt-8 aspect-[3/4] max-h-[560px] w-full rounded-3xl border border-border bg-overlay object-contain" />
           </Reveal>
         </div>
       </div>
@@ -324,7 +341,7 @@ export function WhyUs() {
       <div className="mb-16 grid grid-cols-2 gap-6 md:grid-cols-4">
         {c.why.stats.map((s, i) => (
           <Reveal key={i} delay={i * 80} className="text-center">
-            <p className="font-serif text-5xl text-gold-gradient md:text-6xl"><Counter value={s.value} suffix={s.suffix} /></p>
+            <p className="font-serif text-5xl text-gold-gradient md:text-6xl"><span dir="ltr" className="inline-block"><Counter value={s.value} suffix={t(s.suffix)} /></span></p>
             <p className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{t(s.label)}</p>
           </Reveal>
         ))}
@@ -473,5 +490,18 @@ export function FloatingActions() {
         <Button asChild variant="whatsapp" size="lg" className="h-12"><a href={wa} target="_blank" rel="noopener noreferrer"><WhatsAppIcon /> WhatsApp</a></Button>
       </div>
     </>
+  );
+}
+
+export function TrustStrip() {
+  const { t } = useLang();
+  return (
+    <section aria-label="Garanties" className="border-y border-border bg-card/60">
+      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-5 py-6 text-center text-xs uppercase tracking-widest text-muted-foreground md:grid-cols-4 md:text-sm">
+        {c.trust.map((x) => (
+          <li key={x.fr} className="flex items-center justify-center gap-2"><Check className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />{t(x)}</li>
+        ))}
+      </ul>
+    </section>
   );
 }

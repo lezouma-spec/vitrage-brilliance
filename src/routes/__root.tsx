@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#141310" },
+      { name: "theme-color", content: "#26282c" },
       { title: "Yassine Vitrage Auto" },
       { name: "description", content: "Spécialiste du vitrage automobile à Gafsa." },
       { name: "author", content: "Yassine Vitrage Auto" },

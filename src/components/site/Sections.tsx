@@ -290,7 +290,7 @@ function BeforeAfter() {
   const { t } = useLang();
   const [pos, setPos] = useState(50);
   return (
-    <div className="relative aspect-[1000/772] w-full overflow-hidden rounded-3xl border border-border" dir="ltr">
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-border" dir="ltr">
       <img src={images.after} alt={t(c.work.afterAlt)} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         <img src={images.before} alt={t(c.work.beforeAlt)} loading="lazy" className="h-full w-full object-cover" />

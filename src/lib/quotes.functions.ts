@@ -61,7 +61,7 @@ async function sha(s: string) {
 async function matches(input: string, expected: string) {
   const [a, b] = await Promise.all([sha(input), sha(expected)]);
   let diff = 0;
-  for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
+  for (let i = 0; i < a.length; i++) diff |= (a[i] ?? 0) ^ (b[i] ?? 0);
   return diff === 0;
 }
 

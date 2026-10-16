@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-serif: "Archivo", "Cairo", system-ui, sans-serif;
-  --font-sans: "Manrope", "Cairo", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Amiri", Georgia, serif;
+  --font-sans: "Inter", "Noto Kufi Arabic", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -75,9 +75,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; font-stretch: 112%; letter-spacing: -0.02em; text-transform: none; }
-  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] .font-serif { font-family: "Cairo", sans-serif; font-weight: 800; letter-spacing: 0; font-stretch: 100%; }
-  [dir="rtl"] body { font-family: "Cairo", sans-serif; }
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { font-family: "Amiri", serif; letter-spacing: 0; }
 }
 
 @utility glass {

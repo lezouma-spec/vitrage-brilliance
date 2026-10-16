@@ -4,7 +4,7 @@ import { z } from "zod";
 
 const quoteSchema = z.object({
   name: z.string().trim().min(2).max(100),
-  phone: z.string().trim().min(6).max(30).regex(/^[+\d\s().-]+$/),
+  phone: z.string().trim().regex(/^\d{8,12}$/),
   car_brand: z.string().trim().max(60).optional().default(""),
   car_model: z.string().trim().max(60).optional().default(""),
   car_year: z.string().trim().max(10).optional().default(""),

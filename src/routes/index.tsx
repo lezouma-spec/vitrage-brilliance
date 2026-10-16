@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { business } from "@/config/site";
 import {
   EmergencyBanner, Header, Hero, Services, Process, QuoteForm, MobileService,
-  Work, WhyUs, Reviews, Faq, Contact, Footer, FloatingActions,
+  Work, WhyUs, TrustStrip, Reviews, Faq, Contact, Footer, FloatingActions,
 } from "@/components/site/Sections";
 
 const title = "Vitrage auto Gafsa | Yassine Vitrage Auto – Pare-brise & vitres";
@@ -62,6 +62,7 @@ function Index() {
       <Header />
       <main id="main">
         <Hero />
+        <TrustStrip />
         <Services />
         <Process />
         <QuoteForm />

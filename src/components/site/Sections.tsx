@@ -114,7 +114,7 @@ export function Services() {
       <SectionHead eyebrow={t(c.services.eyebrow)} title={t(c.services.title)} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {c.services.items.map((s, i) => {
-          const Icon = serviceIcons[s.icon] ?? serviceIcons.windshield!;
+          const Icon = serviceIcons[s.icon] ?? serviceIcons['windshield']!;
           return (
             <Reveal key={s.icon} delay={i * 80}>
               <article className="glass lift h-full rounded-2xl p-8">

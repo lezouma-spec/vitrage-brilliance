@@ -94,7 +94,7 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-20 pt-40 md:pb-28">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.35em] text-gold">{t(c.hero.eyebrow)}</p>
-          <div className="gold-line my-6 w-32 rtl:ms-auto rtl:me-0" style={{ marginInlineStart: 0 }} />
+          <div className="gold-line my-6 w-32" />
           <h1 className="max-w-3xl text-5xl leading-[1.05] text-foreground sm:text-6xl md:text-7xl">{t(c.hero.title)}</h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">{t(c.hero.subtitle)}</p>
           <div className="mt-10 flex flex-wrap gap-4">

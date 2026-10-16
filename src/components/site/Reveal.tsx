@@ -33,7 +33,6 @@ export function Counter({ value, suffix = "" }: { value: number; suffix?: string
     if (!el) return;
     const io = new IntersectionObserver(([e]) => {
       if (!e) return;
-        if (!e) return;
       if (!e.isIntersecting) return;
       io.disconnect();
       const start = performance.now();

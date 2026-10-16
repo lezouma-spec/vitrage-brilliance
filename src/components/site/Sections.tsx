@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { business, carModels, content as c, images, videos } from "@/config/site";
 import { useLang } from "@/lib/i18n";
 import { submitQuote } from "@/lib/quotes.functions";
+import logo from "@/assets/logo-light.png";
 import { Reveal, Counter, SectionHead } from "./Reveal";
 import { serviceIcons, WhatsAppIcon } from "./icons";
 
@@ -39,9 +40,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
-        <a href="#top" className="flex items-baseline gap-2" aria-label={business.name}>
-          <span className="font-serif text-2xl text-gold-gradient">Yassine</span>
-          <span className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Vitrage Auto</span>
+        <a href="#top" className="flex items-center" aria-label={business.name}>
+          <img src={logo} alt={business.name} width={600} height={257} className="h-10 w-auto" />
         </a>
         <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
           {links.map(([id, l]) => (
@@ -454,8 +454,7 @@ export function Footer() {
     <footer className="border-t border-border pb-28 pt-16 md:pb-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-3">
         <div>
-          <p className="font-serif text-3xl text-gold-gradient">Yassine</p>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Vitrage Auto</p>
+          <img src={logo} alt={business.name} loading="lazy" width={600} height={257} className="h-14 w-auto" />
           <p className="mt-4 text-sm text-muted-foreground">{t(c.footer.tagline)}</p>
         </div>
         <nav aria-label="Footer">

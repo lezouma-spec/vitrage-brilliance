@@ -31,6 +31,33 @@ export const business = {
   instagram: "https://www.instagram.com/",
 };
 
+// Most common car brands & models in Tunisia (edit freely)
+export const carModels: Record<string, string[]> = {
+  Peugeot: ["208", "301", "308", "2008", "3008", "Partner", "206", "207"],
+  Renault: ["Clio", "Symbol", "Mégane", "Captur", "Kangoo", "Duster"],
+  Dacia: ["Logan", "Sandero", "Duster"],
+  Citroën: ["C3", "C4", "C-Elysée", "Berlingo", "C5 Aircross"],
+  Volkswagen: ["Polo", "Golf", "Passat", "Tiguan", "Caddy"],
+  Kia: ["Picanto", "Rio", "Cerato", "Sportage", "Seltos"],
+  Hyundai: ["i10", "i20", "Accent", "Elantra", "Tucson", "Creta"],
+  Toyota: ["Yaris", "Corolla", "Hilux", "RAV4"],
+  Suzuki: ["Swift", "Celerio", "Dzire", "Vitara"],
+  Fiat: ["Tipo", "Punto", "Doblo"],
+  Chery: ["Tiggo 2", "Tiggo 4", "Tiggo 7", "Arrizo 5"],
+  Geely: ["Coolray", "Emgrand", "GX3"],
+  Mahindra: ["Scorpio", "Pik-up"],
+  Isuzu: ["D-Max"],
+  "Mercedes-Benz": ["Classe A", "Classe C", "Classe E", "Vito"],
+  BMW: ["Série 1", "Série 3", "Série 5", "X1", "X3"],
+  Audi: ["A3", "A4", "Q3", "Q5"],
+  Seat: ["Ibiza", "Leon"],
+  Skoda: ["Fabia", "Octavia"],
+  Ford: ["Fiesta", "Focus", "Ranger"],
+  Nissan: ["Micra", "Qashqai", "Navara"],
+  Opel: ["Corsa", "Astra"],
+  MG: ["ZS", "MG5"],
+};
+
 export const images = { storefront, workshop, trophy, before, after, videoPoster };
 
 export const videos = [
@@ -87,7 +114,15 @@ export const content = {
       { title: { fr: "Pose rapide", ar: "تركيب سريع" }, text: { fr: "Installation soignée à l'atelier ou à domicile.", ar: "تركيب متقن في الورشة أو في مكانك." } },
     ],
   },
+  trust: [
+    { fr: "Partenaire Mawdy Services", ar: "شريك موادي للخدمات" },
+    { fr: "Trophée Meilleur Local 2026", ar: "جائزة أفضل محلّ 2026" },
+    { fr: "Devis gratuit en 1h", ar: "تسعيرة مجانية في ساعة" },
+    { fr: "Garantie 12 mois", ar: "ضمان 12 شهراً" },
+  ],
   quote: {
+    other: { fr: "Autre", ar: "أخرى" },
+    choose: { fr: "Choisir…", ar: "اختر…" },
     eyebrow: { fr: "Devis gratuit", ar: "تسعيرة مجانية" },
     title: { fr: "Demandez votre devis.", ar: "اطلب تسعيرتك." },
     subtitle: { fr: "Réponse rapide, sans engagement.", ar: "ردّ سريع، دون أي التزام." },
@@ -145,10 +180,10 @@ export const content = {
     eyebrow: { fr: "Pourquoi nous", ar: "لماذا نحن" },
     title: { fr: "La confiance, en toute transparence.", ar: "الثقة، بكل شفافية." },
     stats: [
-      { value: 10, suffix: "+", label: { fr: "Années d'expérience", ar: "سنوات خبرة" } },
-      { value: 5000, suffix: "+", label: { fr: "Vitrages posés", ar: "بلّورة مركّبة" } },
-      { value: 60, suffix: " min", label: { fr: "Pose moyenne", ar: "متوسط التركيب" } },
-      { value: 12, suffix: " mois", label: { fr: "Garantie", ar: "ضمان (شهر)" } },
+      { value: 10, suffix: { fr: "+", ar: "+" }, label: { fr: "Années d'expérience", ar: "سنوات خبرة" } },
+      { value: 5000, suffix: { fr: "+", ar: "+" }, label: { fr: "Vitrages posés", ar: "بلّورة مركّبة" } },
+      { value: 60, suffix: { fr: " min", ar: " د" }, label: { fr: "Pose moyenne", ar: "متوسط التركيب" } },
+      { value: 12, suffix: { fr: " mois", ar: " شهر" }, label: { fr: "Garantie", ar: "ضمان" } },
     ],
     points: [
       { title: { fr: "Garantie écrite", ar: "ضمان مكتوب" }, text: { fr: "Chaque pose est garantie contre les fuites et défauts.", ar: "كل تركيب مضمون ضد التسرّب والعيوب." } },
